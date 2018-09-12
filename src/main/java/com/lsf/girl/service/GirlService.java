@@ -23,7 +23,7 @@ public class GirlService {
     /**
      * 同时插入两个女生信息
      */
-    @Transactional
+    @Transactional//事务管理，一旦失败就回滚
     public void insertTwo() {
         Girl girlA = new Girl();
         girlA.setCupSize("A");
@@ -46,5 +46,14 @@ public class GirlService {
             //返回“你可能在上初中” code=101
             throw new GirlException(ResultEnum.MIDDLE_SCHLOOL);
         }
+    }
+
+    /**
+     * 根据ID查找一个女生信息
+     * @param id
+     * @return
+     */
+    public Girl findOne(Integer id) {
+        return girlRepository.findOne(id);
     }
 }
